@@ -36,8 +36,8 @@ def readme():
         return f.read()
 
 
-if sys.version_info < (3, 4, 1):
-    sys.exit('Python < 3.4.1 is not supported!')
+if sys.version_info < (3, 8, 0):
+    sys.exit('Python < 3.8 is not supported!')
 
 
 setup(name='mtcnn',
@@ -50,8 +50,8 @@ setup(name='mtcnn',
       license='MIT',
       packages=setuptools.find_packages(exclude=["tests.*", "tests"]),
       install_requires=[
-          "keras>=2.0.0",
-          "opencv-python>=4.1.0"
+          "tensorflow>=2.3.0",
+          "opencv-python-headless>=4.4.0"
       ],
       classifiers=[
           'Environment :: Console',
@@ -59,10 +59,7 @@ setup(name='mtcnn',
           'Intended Audience :: Education',
           'Intended Audience :: Science/Research',
           'Natural Language :: English',
-          'Programming Language :: Python :: 3.4',
-          'Programming Language :: Python :: 3.5',
-          'Programming Language :: Python :: 3.6',
-          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
       ],
       test_suite='nose.collector',
       tests_require=['nose'],

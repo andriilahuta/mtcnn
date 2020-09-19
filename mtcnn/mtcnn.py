@@ -28,10 +28,11 @@
 # (https://github.com/davidsandberg/facenet/)
 # It has been rebuilt from scratch, taking the David Sandberg's implementation as a reference.
 #
+import importlib.resources
+from pathlib import Path
 
 import cv2
 import numpy as np
-import pkg_resources
 
 from mtcnn.exceptions import InvalidImage
 from mtcnn.network.factory import NetworkFactory
@@ -64,7 +65,7 @@ class MTCNN(object):
         b) Detection of keypoints (left eye, right eye, nose, mouth_left, mouth_right)
     """
 
-    def __init__(self, weights_file: str = None, min_face_size: int = 20, steps_threshold: list = None,
+    def __init__(self, weights_file: Path = None, min_face_size: int = 20, steps_threshold: list = None,
                  scale_factor: float = 0.709):
         """
         Initializes the MTCNN.
@@ -78,7 +79,8 @@ class MTCNN(object):
             steps_threshold = [0.6, 0.7, 0.7]
 
         if weights_file is None:
-            weights_file = pkg_resources.resource_stream('mtcnn', 'data/mtcnn_weights.npy')
+            with importlib.resources.path('mtcnn.data', 'mtcnn_weights.npy') as default_weights_file:
+                weights_file = default_weights_file
 
         self._min_face_size = min_face_size
         self._steps_threshold = steps_threshold
@@ -203,7 +205,7 @@ class MTCNN(object):
 
             inter = w * h
 
-            if method is 'Min':
+            if method == 'Min':
                 o = inter / np.minimum(area[i], area[idx])
             else:
                 o = inter / (area[i] + area[idx] - inter)

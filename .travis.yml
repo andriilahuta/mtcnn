@@ -1,8 +1,6 @@
 language: python
 python:
-  - "3.5"
-  - "3.6"
-  - "3.7"
+  - "3.8"
 # command to install dependencies
 before_install:
   - sudo apt-get -qq update
@@ -11,7 +9,6 @@ install:
   - pip install -r requirements.txt
   - pip install nose coverage
   - pip install coveralls
-  - pip install tensorflow
 # # command to run tests, e.g. python setup.py test
 script:
   - python3 setup.py nosetests --with-coverage --cover-package mtcnn --verbosity=2
