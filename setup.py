@@ -24,8 +24,7 @@
 # SOFTWARE.
 
 import sys
-from setuptools import setup, setuptools
-
+from setuptools import setup, find_packages
 
 __author__ = "Iván de Paz Centeno"
 __version__= "0.1.0"
@@ -48,7 +47,7 @@ setup(name='mtcnn',
       author='Iván de Paz Centeno',
       author_email='ipazc@unileon.es',
       license='MIT',
-      packages=setuptools.find_packages(exclude=["tests.*", "tests"]),
+      packages=find_packages(exclude=["tests.*", "tests"]),
       install_requires=[
           "tensorflow>=2.3.0",
           "opencv-python-headless>=4.4.0"
@@ -59,7 +58,7 @@ setup(name='mtcnn',
           'Intended Audience :: Education',
           'Intended Audience :: Science/Research',
           'Natural Language :: English',
-          'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.11',
       ],
       test_suite='nose.collector',
       tests_require=['nose'],

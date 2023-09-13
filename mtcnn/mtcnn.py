@@ -28,7 +28,7 @@
 # (https://github.com/davidsandberg/facenet/)
 # It has been rebuilt from scratch, taking the David Sandberg's implementation as a reference.
 #
-import importlib.resources
+from importlib.resources import as_file, files
 from pathlib import Path
 
 import cv2
@@ -79,7 +79,7 @@ class MTCNN(object):
             steps_threshold = [0.6, 0.7, 0.7]
 
         if weights_file is None:
-            with importlib.resources.path('mtcnn.data', 'mtcnn_weights.npy') as default_weights_file:
+            with as_file(files('mtcnn.data') / 'mtcnn_weights.npy') as default_weights_file:
                 weights_file = default_weights_file
 
         self._min_face_size = min_face_size
